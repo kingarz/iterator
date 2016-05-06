@@ -5,10 +5,12 @@ class aghContainer
 {
 public:
 	//\\konstruktor klasy aghContainer
-	virtual aghContainer();
+	 aghContainer();
 
 	//\\ destruktor klasy aghContainer
 	virtual ~aghContainer() = 0;
+
+	aghContainer(const aghContainer<T>& right);
 
 	//\\dodawanie podanego jako argument obiektu typu T do pojemnika
 	virtual void append(T const &value);
@@ -60,7 +62,7 @@ public:
 	//\\ dopisuje wszystkie elementy z pojemnika right i zwraca referencje do this
 	virtual aghContainer<T>& operator<<(aghContainer<T> const& right);
 
-
+	virtual aghContainer<T>& operator=(const aghContainer<T>& right);
 };
 
 template<class T>
@@ -198,6 +200,12 @@ template<class T>
 aghContainer<T>& aghContainer<T>::operator<<(aghContainer<T> const & right)
 {
 	*this += right;
+}
+
+template<class T>
+aghContainer<T>& aghContainer<T>::operator=(const aghContainer<T>& right)
+{
+	return *this;
 }
 
 template<class T>
