@@ -6,7 +6,7 @@
 using namespace std;
 
 template <class T>
-class aghVector : public aghContainer
+class aghVector : public aghContainer<T>
 {
 public:
 	//\\ konstruktor klasy aghVector
@@ -14,6 +14,8 @@ public:
 
 	//\\ destruktor klasy aghVector
 	~aghVector();
+
+	aghVector(const aghVector &value);
 
 	//\\ wstawia obiekt typu T w wybrane miejsce
 	//\\ Zwraca true je¿eli podane miejsce wstawienia jest prawid³owe, w przeciwnym wypadku zwraca false.
@@ -29,9 +31,10 @@ public:
 	//\\ Zwraca true je¿eli podane miejsce usuniêcia jest prawid³owe, w przeciwnym wypadku zwraca false.
 	virtual bool remove(int index);
 
+	virtual bool operator =(aghVector<T> const& right);
 private:
 	//\\ size- ilosc elementow
-	int size;
+	int Size;
 
 	//\\ tabsize - rozmiar wekora
 	int tabsize;
@@ -45,7 +48,7 @@ private:
 template<class T>
 aghVector<T>::aghVector()
 {
-	size = 0;
+	Size = 0;
 	tabsize = 0;
 	tab = NULL;
 }
@@ -68,21 +71,21 @@ bool aghVector<T>::insert(int number, T const & value)
 	{
 		return false;
 	}
-	else if (size+1 < tabsize)
+	else if (Size+1 < tabsize)
 	{
-		for (int i = number ; i < size -1 ; i++)
+		for (int i = number ; i < Size -1 ; i++)
 		{
 			tab[i+1] = tab[i];
 		}
 		tab[number] = value;	
-		size += 1;
+		Size += 1;
 		return true;
 	}
 	else
 	{
 		tabsize = 2*tabsize + 1;
 		tmp = new T [tabsize];
-		for (int i = 0; i < size; i++)
+		for (int i = 0; i < Size; i++)
 		{
 			tmp[i] = tab[i];
 		}
@@ -95,7 +98,7 @@ bool aghVector<T>::insert(int number, T const & value)
 template<class T>
 T & aghVector<T>::at(int index) const
 {
-	if ((index > size) || (index < 0))
+	if ((index > Size) || (index < 0))
 	{
 		throw aghException();
 	}
@@ -108,19 +111,19 @@ T & aghVector<T>::at(int index) const
 template<class T>
 int aghVector<T>::size(void) const
 {
-	return size;
+	return Size;
 }
 
 template<class T>
 bool aghVector<T>::remove(int index)
 {
-	if (index < 0 || index > size)
+	if (index < 0 || index > Size)
 	{
 		return false;
 	}
 	else
 	{
-		for (int i = index; i < size - 1; i++)
+		for (int i = index; i < Size - 1; i++)
 		{
 			tab[i] = tab[i + 1];
 		}
