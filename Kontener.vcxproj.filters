@@ -32,6 +32,9 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="aghVector.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="aghException.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
