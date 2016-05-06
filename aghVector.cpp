@@ -65,6 +65,7 @@ bool aghVector<T>::replace(int number, T const &value)
 	else
 	{
 		value = tab[number];
+		return true;
 	}
 }
 
