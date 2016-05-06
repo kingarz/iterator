@@ -18,5 +18,28 @@
     <ClInclude Include="aghContainer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="aghVector.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="aghException.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="catch.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="aghInclude.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="aghVector.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="aghException.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ex3main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

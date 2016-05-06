@@ -19,8 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{A05E2B5B-8529-4F2D-A787-36999BCB575C}</ProjectGuid>
-    <RootNamespace>Container</RootNamespace>
+    <ProjectGuid>{DAA75A0B-6ABF-460F-B0E5-E5BE06EBCE1F}</ProjectGuid>
+    <RootNamespace>Kontener</RootNamespace>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -111,6 +111,15 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="aghContainer.h" />
+    <ClInclude Include="aghException.h" />
+    <ClInclude Include="aghInclude.h" />
+    <ClInclude Include="aghVector.h" />
+    <ClInclude Include="catch.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="aghException.cpp" />
+    <ClCompile Include="aghVector.cpp" />
+    <ClCompile Include="ex3main.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
