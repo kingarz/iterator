@@ -99,7 +99,7 @@ bool aghVector<T>::insert(int number, T const & value)
 	}
 	else if (Size+1 < tabsize)
 	{
-		for (int i = number ; i < Size -1 ; i++)
+		for (int i = number ; i < Size ; i++)
 		{
 			tab[i+1] = tab[i];
 		}

@@ -72,6 +72,12 @@ aghContainer<T>::aghContainer()
 }
 
 template<class T>
+aghContainer<T>::~aghContainer()
+{
+
+}
+
+template<class T>
 aghContainer<T>::aghContainer(const aghContainer<T>& right)
 {
 
@@ -80,7 +86,7 @@ aghContainer<T>::aghContainer(const aghContainer<T>& right)
 template<class T>
 void aghContainer<T>::append(T const & value)
 {
-	insert(size() - 1, value);
+	insert(size(), value);
 }
 
 template<class T>
