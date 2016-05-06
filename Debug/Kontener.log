@@ -1,0 +1,4 @@
+﻿  ex3main.cpp
+ex3main.obj : error LNK2019: unresolved external symbol "public: virtual __thiscall aghContainer<class aghVector<int> >::~aghContainer<class aghVector<int> >(void)" (??1?$aghContainer@V?$aghVector@H@@@@UAE@XZ) referenced in function "public: virtual __thiscall aghVector<class aghVector<int> >::~aghVector<class aghVector<int> >(void)" (??1?$aghVector@V?$aghVector@H@@@@UAE@XZ)
+ex3main.obj : error LNK2019: unresolved external symbol "public: virtual __thiscall aghContainer<int>::~aghContainer<int>(void)" (??1?$aghContainer@H@@UAE@XZ) referenced in function "public: virtual __thiscall aghVector<int>::~aghVector<int>(void)" (??1?$aghVector@H@@UAE@XZ)
+C:\Users\Kinga\Documents\Visual Studio 2015\Projects\Containers\Debug\Kontener.exe : fatal error LNK1120: 2 unresolved externals

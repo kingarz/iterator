@@ -72,6 +72,12 @@ aghContainer<T>::aghContainer()
 }
 
 template<class T>
+aghContainer<T>::aghContainer(const aghContainer<T>& right)
+{
+
+}
+
+template<class T>
 void aghContainer<T>::append(T const & value)
 {
 	insert(size() - 1, value);
@@ -117,9 +123,9 @@ bool aghContainer<T>::isEmpty(void)
 template<class T>
 int aghContainer<T>::indexOf(T const & _value, int _from) const
 {
-	for (int i = _from; i < size; i++)
+	for (int i = _from; i < size(); i++)
 	{
-		if (at(i) == value)
+		if (at(i) == _value)
 		{
 			return i;
 		}
@@ -132,7 +138,7 @@ bool aghContainer<T>::contains(T const & _value, int _from) const
 {
 	for (int i = _from; i < size(); i++)
 	{
-		if (at(i) == value)
+		if (at(i) == _value)
 		{
 			return true;
 		}
@@ -159,7 +165,7 @@ bool aghContainer<T>::operator==(aghContainer<T> const & right)
 template<class T>
 bool aghContainer<T>::operator!=(aghContainer<T> const & right)
 {
-	if (this == right)
+	if (*this == right)
 	{
 		return false;
 	}
@@ -200,6 +206,7 @@ template<class T>
 aghContainer<T>& aghContainer<T>::operator<<(aghContainer<T> const & right)
 {
 	*this += right;
+	return *this;
 }
 
 template<class T>
@@ -215,4 +222,5 @@ ostream & operator<<(ostream &out, aghContainer<T> const & right)
 	{
 		out << right.at(i);
 	}
+	return out;
 }
