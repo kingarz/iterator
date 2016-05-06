@@ -22,7 +22,6 @@ aghVector<T>::~aghVector()
 		{
 			delete[] tab[i];
 		}
-		delete[] tab;
 	}
 }
 
@@ -57,9 +56,16 @@ bool aghVector<T>::insert(int number, T const &value)
 }
 
 template<class T>
-bool aghVector<T>::replace(int, T const &)
+bool aghVector<T>::replace(int number, T const &value)
 {
-	
+	if (number < 0 || number >= size - 1)
+	{
+		return false;
+	}
+	else
+	{
+		value = tab[number];
+	}
 }
 
 template<class T>
@@ -110,7 +116,6 @@ void aghVector<T>::clear(void)
 		{
 			delete[] tab[i];
 		}
-		delete[] tab;
 	}
 	else
 	{
