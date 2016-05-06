@@ -2,7 +2,7 @@
 #include<iostream>
 #include "aghContainer.h"
 #include "aghException.h"
-//test
+
 using namespace std;
 
 template <class T>
@@ -15,11 +15,9 @@ public:
 	//\\ destruktor klasy aghVector
 	~aghVector();
 
-	//\\?
 	//\\ konstruktor inicjalizujacy z value
 	aghVector(const aghVector<T> &value);
 
-	//\\?
 	//\\ konstruktor inicjalizujacy z value
 	aghVector(const aghContainer<T> &value);
 
@@ -73,11 +71,29 @@ aghVector<T>::~aghVector()
 	tab = NULL;
 }
 
+template<class T>
+aghVector<T>::aghVector(const aghVector<T>& value)
+{
+	this->Size = value.Size;
+	this->tabsize = value.tabsize;
+	tab = new T[tabsize];
+	for (int i = 0; i < value.Size; i++)
+	{
+		tab[i] = value.tab[i];
+	}
+}
+
+template<class T>
+aghVector<T>::aghVector(const aghContainer<T>& value)
+{
+	
+}
+
 
 template<class T>
 bool aghVector<T>::insert(int number, T const & value)
 {
-	if (number < 0 || number > size())
+	if (number < 0 || number > Size)
 	{
 		return false;
 	}
@@ -94,6 +110,7 @@ bool aghVector<T>::insert(int number, T const & value)
 	else
 	{
 		tabsize = 2*tabsize + 1;
+		T *tmp;
 		tmp = new T [tabsize];
 		for (int i = 0; i < Size; i++)
 		{
@@ -139,5 +156,27 @@ bool aghVector<T>::remove(int index)
 		}
 		return true;
 	}
+}
+
+template<class T>
+aghVector<T>& aghVector<T>::operator=(aghVector<T> const & right)
+{
+	this->Size = right.Size;
+	this->tabsize = right.Size;
+	tab = new T[tabsize];
+	for (int i = 0; i < Size; i++)
+	{
+		tab[i] = right.tab[i];
+	}
+	return *this;
+}
+
+template<class T>
+aghVector<T>& aghVector<T>::operator=(aghContainer<T> const & right)
+{
+	Size = 0;
+	tabsize = 0;
+	tab = NULL;
+	return *this;
 }
 
