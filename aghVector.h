@@ -15,7 +15,13 @@ public:
 	//\\ destruktor klasy aghVector
 	~aghVector();
 
-	aghVector(const aghVector &value);
+	//\\?
+	//\\ konstruktor inicjalizujacy z value
+	aghVector(const aghVector<T> &value);
+
+	//\\?
+	//\\ konstruktor inicjalizujacy z value
+	aghVector(const aghContainer<T> &value);
 
 	//\\ wstawia obiekt typu T w wybrane miejsce
 	//\\ Zwraca true je¿eli podane miejsce wstawienia jest prawid³owe, w przeciwnym wypadku zwraca false.
@@ -31,7 +37,11 @@ public:
 	//\\ Zwraca true je¿eli podane miejsce usuniêcia jest prawid³owe, w przeciwnym wypadku zwraca false.
 	virtual bool remove(int index);
 
-	virtual bool operator =(aghVector<T> const& right);
+	//\\ operator kopiujacy z innego vectora
+	virtual aghVector<T>& operator =(aghVector<T> const& right);
+
+	//\\ operator kopiujacy z container
+	virtual aghVector<T>& operator =(aghContainer<T> const& right);
 private:
 	//\\ size- ilosc elementow
 	int Size;
