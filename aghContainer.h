@@ -5,7 +5,7 @@ class aghContainer
 {
 public:
 	//\\konstruktor klasy aghContainer
-	 aghContainer();
+	aghContainer();
 
 	//\\ destruktor klasy aghContainer
 	virtual ~aghContainer() = 0;
@@ -92,7 +92,7 @@ void aghContainer<T>::append(T const & value)
 template<class T>
 bool aghContainer<T>::replace(int number, T const &value)
 {
-	if (number <0 || number > size())
+	if (number < 0 || number >= size())
 	{
 		return false;
 	}
@@ -129,6 +129,10 @@ bool aghContainer<T>::isEmpty(void)
 template<class T>
 int aghContainer<T>::indexOf(T const & _value, int _from) const
 {
+	if (_from < 0 || _from > size())
+	{
+		throw aghException();
+	}
 	for (int i = _from; i < size(); i++)
 	{
 		if (at(i) == _value)
@@ -138,6 +142,7 @@ int aghContainer<T>::indexOf(T const & _value, int _from) const
 	}
 	return -1;
 }
+
 
 template<class T>
 bool aghContainer<T>::contains(T const & _value, int _from) const

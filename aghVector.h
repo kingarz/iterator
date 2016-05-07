@@ -74,13 +74,15 @@ aghVector<T>::~aghVector()
 template<class T>
 aghVector<T>::aghVector(const aghVector<T>& value)
 {
-	this->Size = value.Size;
-	this->tabsize = value.tabsize;
-	tab = new T[tabsize];
-	for (int i = 0; i < value.Size; i++)
-	{
-		tab[i] = value.tab[i];
-	}
+
+		this->Size = value.Size;
+		this->tabsize = value.tabsize;
+		tab = new T[tabsize];
+		for (int i = 0; i < value.Size; i++)
+		{
+			tab[i] = value.tab[i];
+		}
+	
 }
 
 template<class T>
@@ -93,7 +95,7 @@ aghVector<T>::aghVector(const aghContainer<T>& value)
 template<class T>
 bool aghVector<T>::insert(int number, T const & value)
 {
-	if (number < 0 || number > Size)
+	if (number < 0 || number >= Size)
 	{
 		return false;
 	}
@@ -125,7 +127,7 @@ bool aghVector<T>::insert(int number, T const & value)
 template<class T>
 T & aghVector<T>::at(int index) const
 {
-	if ((index > Size) || (index < 0))
+	if ((index >= Size) || (index < 0))
 	{
 		throw aghException();
 	}
@@ -144,7 +146,7 @@ int aghVector<T>::size(void) const
 template<class T>
 bool aghVector<T>::remove(int index)
 {
-	if (index < 0 || index > Size)
+	if (index < 0 || index >= Size)
 	{
 		return false;
 	}
@@ -154,6 +156,7 @@ bool aghVector<T>::remove(int index)
 		{
 			tab[i] = tab[i + 1];
 		}
+		Size = Size - 1;
 		return true;
 	}
 }
