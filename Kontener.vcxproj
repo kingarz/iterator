@@ -120,7 +120,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="aghException.cpp" />
-    <ClCompile Include="aghVector.cpp" />
     <ClCompile Include="ex3main.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
