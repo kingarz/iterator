@@ -30,6 +30,12 @@
     <ClInclude Include="aghInclude.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="aghContainer_def.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="aghVector_def.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="aghException.cpp">

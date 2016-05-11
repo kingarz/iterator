@@ -12,7 +12,13 @@
 // --------------------------------------------------------------
 
 #include <iostream>
-#include <string.h>
+
+//sprawdza czy visual studio jest kompilatorem i zalacza odpowiednie headery
+#ifndef _MSC_VER
+	#include <string.h>
+#else
+	#include <string>
+#endif
 
 using namespace std;
 
@@ -134,8 +140,11 @@ class aghException
 /// \param __out - a given stream (display, file, etc.)
 /// \param __exception - a reference to the exception object
 /// \return returns a reference to the given stream
-#undef __out
-#undef ostream
+
+#ifdef _MSC_VER
+	#undef __out
+#endif
+
 ostream &operator<<(ostream &__out, aghException &__exception);
 // --------------------------------------------------------------
 
