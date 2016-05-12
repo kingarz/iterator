@@ -10,18 +10,15 @@ public:
 	//\\desc: destruktor klasy aghContainer.
 	virtual ~aghContainer() = 0;
 
-	//\\desc: konstruktor inicjalizujacy.
-	aghContainer(const aghContainer<T>& right);
-
 	//\\desc: dodawanie na koniec.
 	//\\param: T const &value - obiekt do umieszczenia w pojemniku.
-	virtual void append(T const &value);
+	virtual void append(T const& value);
 
 	//\\desc: stawia obiekt w wybrane miejsce. 
 	//\\param: int number - indeks na ktorym ma byc umieszczony obiekt.
 	//\\param: T const &value - obiekt do umieszczenia.
 	//\\return: bool - Zwraca true je¿eli podane miejsce wstawienia jest prawid³owe, w przeciwnym wypadku zwraca false.
-	virtual bool insert(int number, T const &value) = 0;
+	virtual bool insert(int number, T const& value) = 0;
 
 	//\\desc: podmienia podany obiekt z obiektem na wybranym miejscu. 
 	//\\param: int number - indeks na ktorym ma byc umieszczony obiekt.
@@ -98,7 +95,7 @@ public:
 	//\\desc: operator przypisania. 
 	//\\param: aghContainer<T> const& right - pojemnik do przypisania.
 	//\\return: aghContainer<T>& - zwraca referencje do pojemnika na ktorym wywolano przypisanie.
-	virtual aghContainer<T>& operator=(const aghContainer<T>& right);
+	virtual aghContainer<T>& operator=(aghContainer<T> const& right);
 };
 
 #include "aghContainer_def.h"

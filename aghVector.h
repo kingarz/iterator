@@ -1,4 +1,5 @@
 #pragma once
+
 #include<iostream>
 #include "aghContainer.h"
 #include "aghException.h"
@@ -16,16 +17,13 @@ public:
 	~aghVector();
 
 	//\\desc: konstruktor inicjalizujacy z value
-	aghVector(const aghVector<T> &value);
-
-	//\\desc: konstruktor inicjalizujacy z value
-	aghVector(const aghContainer<T> &value);
+	aghVector(const aghContainer<T>& value);
 
 	//\\desc: stawia obiekt w wybrane miejsce. 
 	//\\param: int number - indeks na ktorym ma byc umieszczony obiekt.
 	//\\param: T const &value - obiekt do umieszczenia.
 	//\\return: bool - Zwraca true je¿eli podane miejsce wstawienia jest prawid³owe, w przeciwnym wypadku zwraca false.
-	virtual bool insert(int number, T const &value);
+	virtual bool insert(int number, T const& value);
 
 	//\\desc: funkcja dajaca dostep do obiektow w pojemniku.
 	//\\param: int index - indeks z ktorego ma byc pobrany obiekt.
@@ -45,10 +43,6 @@ public:
 	//\\return: aghVector<T>& - zwraca referencje do pojemnika na ktorym wywolano przypisanie.
 	virtual aghVector<T>& operator =(aghVector<T> const& right);
 
-	//\\desc: operator przypisania. 
-	//\\param: aghContainer<T> const& right - pojemnik do przypisania.
-	//\\return: aghVector<T>& - zwraca referencje do pojemnika na ktorym wywolano przypisanie.
-	virtual aghVector<T>& operator =(aghContainer<T> const& right);
 private:
 	//\\ size- ilosc elementow
 	int Size;

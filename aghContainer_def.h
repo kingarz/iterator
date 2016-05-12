@@ -13,11 +13,6 @@ aghContainer<T>::~aghContainer()
 
 }
 
-template<class T>
-aghContainer<T>::aghContainer(const aghContainer<T>& right)
-{
-
-}
 
 template<class T>
 void aghContainer<T>::append(T const & value)
@@ -96,14 +91,25 @@ bool aghContainer<T>::contains(T const & _value, int _from) const
 template<class T>
 bool aghContainer<T>::operator==(aghContainer<T> const & right)
 {
+	bool found;
 	for (int i = 0; i < size(); i++)
 	{
+		found = false;
 		for (int j = 0; j < right.size(); j++)
 		{
 			if (this->at(i) != right.at(j))
 			{
-				return false;
+				continue;
 			}
+			else
+			{
+				found = true;
+				break;
+			}
+		}
+		if (!found)
+		{
+			return false;
 		}
 	}
 	return true;
@@ -159,6 +165,29 @@ aghContainer<T>& aghContainer<T>::operator<<(aghContainer<T> const & right)
 template<class T>
 aghContainer<T>& aghContainer<T>::operator=(const aghContainer<T>& right)
 {
+	int _size = size();
+	int _rsize = right.size();
+
+	for (int i = 0; i < min(_rsize, _size); i++)
+	{
+		at(i) = right.at(i);
+	}
+
+	if (_rsize > _size)
+	{
+		for (int i = _size; i < _rsize; i++)
+		{
+			append(right.at(i));
+		}
+	}
+	else if (_rsize < _size)
+	{
+		for (int i = _rsize; i < _size; i++)
+		{
+			remove(i);
+		}
+	}
+
 	return *this;
 }
 

@@ -135,17 +135,18 @@ class aghException
 };
 // --------------------------------------------------------------
 
+#ifdef _MSC_VER
+	#undef __out
+#endif
+
 /// \brief an overloaded operator << that writes the error parameters to the given stream
 ///
 /// \param __out - a given stream (display, file, etc.)
 /// \param __exception - a reference to the exception object
 /// \return returns a reference to the given stream
-
-#ifdef _MSC_VER
-	#undef __out
-#endif
-
 ostream &operator<<(ostream &__out, aghException &__exception);
+
+
 // --------------------------------------------------------------
 
 #endif

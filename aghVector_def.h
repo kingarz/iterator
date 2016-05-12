@@ -1,5 +1,6 @@
 #pragma once
 
+#include <algorithm> //min()
 
 template<class T>
 aghVector<T>::aghVector()
@@ -22,22 +23,11 @@ aghVector<T>::~aghVector()
 }
 
 template<class T>
-aghVector<T>::aghVector(const aghVector<T>& value)
-{
-
-	this->Size = value.Size;
-	this->tabsize = value.tabsize;
-	tab = new T[tabsize];
-	for (int i = 0; i < value.Size; i++)
-	{
-		tab[i] = value.tab[i];
-	}
-
-}
-
-template<class T>
 aghVector<T>::aghVector(const aghContainer<T>& value)
 {
+	tabsize = 0;
+	Size = 0;
+	tab = NULL;
 	for (int i = 0; i < value.size(); i++)
 	{
 		this->append(value.at(i));
@@ -58,6 +48,7 @@ bool aghVector<T>::insert(int number, T const & value)
 		{
 			tab[i + 1] = tab[i];
 		}
+
 		tab[number] = value;
 		Size += 1;
 		return true;
@@ -67,12 +58,15 @@ bool aghVector<T>::insert(int number, T const & value)
 		tabsize = 2 * tabsize + 1;
 		T *tmp;
 		tmp = new T[tabsize];
+
 		for (int i = 0; i < Size; i++)
 		{
 			tmp[i] = tab[i];
 		}
+
 		delete[] tab;
 		tab = tmp;
+
 		return insert(number, value);
 	}
 }
@@ -117,22 +111,25 @@ bool aghVector<T>::remove(int index)
 template<class T>
 aghVector<T>& aghVector<T>::operator=(aghVector<T> const & right)
 {
+	if (tab != NULL)
+	{
+		delete[] tab;
+		tab = NULL;
+	}
+
 	this->Size = right.Size;
-	this->tabsize = right.Size;
-	tab = new T[tabsize];
+	this->tabsize = right.tabsize;
+
+	if (tabsize > 0)
+	{
+		tab = new T[tabsize];
+	}
+
 	for (int i = 0; i < Size; i++)
 	{
 		tab[i] = right.tab[i];
 	}
-	return *this;
-}
 
-template<class T>
-aghVector<T>& aghVector<T>::operator=(aghContainer<T> const & right)
-{
-	Size = 0;
-	tabsize = 0;
-	tab = NULL;
 	return *this;
 }
 
