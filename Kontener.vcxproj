@@ -116,13 +116,15 @@
     <ClInclude Include="aghContainer_def.h" />
     <ClInclude Include="aghException.h" />
     <ClInclude Include="aghInclude.h" />
+    <ClInclude Include="aghSlist.h" />
+    <ClInclude Include="aghSlist_def.h" />
     <ClInclude Include="aghVector.h" />
     <ClInclude Include="aghVector_def.h" />
     <ClInclude Include="catch.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="aghException.cpp" />
-    <ClCompile Include="ex3main.cpp" />
+    <ClCompile Include="ex4main.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
