@@ -17,21 +17,31 @@ Dlist<T>::~aghDlist()
 }
 
 template<class T>
+Dlist<T>::aghDlist(const aghContainer<T>& value)
+{
+	head = NULL;
+	for (int i = 0; i < value->size(); i++)
+	{
+		insert(i, value->at(i));
+	}
+}
+
+template<class T>
 bool Dlist<T>::insert(int number, T const & value)
 {
 	if (number < 0 || number > size())
 	{
 		return false;
 	}
-	node<T> *tmp = head;
-	node<T> *help = tmp;
+	Dnode<T> *tmp = head;
+	Dnode<T> *help = tmp;
 	int pos = 0;
 	while (tmp != NULL)
 	{
 		if (pos == number)
 		{
-			node<T> *nowy;
-			nowy = new node<T>;
+			Dnode<T> *nowy;
+			nowy = new Dnode<T>;
 			nowy->value = value;
 			nowy->next = tmp;
 			nowy->prev = tmp->prev;
@@ -45,7 +55,7 @@ bool Dlist<T>::insert(int number, T const & value)
 			pos++;
 		}
 	}
-	tmp = new node<T>;
+	tmp = new Dnode<T>;
 	tmp->value = value;
 	tmp->next = NULL;
 	tmp->prev = NULL;
@@ -68,8 +78,8 @@ T & Dlist<T>::at(int index) const
 		throw aghException();
 	}
 	int pos = 0;
-	node<T> *tmp = head;
-	node<T> *help = temp;
+	Dnode<T> *tmp = head;
+	Dnode<T> *help = temp;
 	while (tmp != NULL)
 	{
 		if (pos == index)
@@ -91,8 +101,8 @@ template<class T>
 int Dlist<T>::size(void) const
 {
 	int pos = 0;
-	node<T> *tmp = head;
-	node<T> *help = tmp;
+	Dnode<T> *tmp = head;
+	Dnode<T> *help = tmp;
 	while (tmp != NULL)
 	{
 		tmp = tmp->next;
@@ -110,7 +120,7 @@ bool Dlist<T>::remove(int index)
 	{
 		return false;
 	}
-	node<T> *tmp = head;
+	Dnode<T> *tmp = head;
 	int pos = 0;
 	while (tmp != NULL)
 	{
@@ -131,7 +141,7 @@ bool Dlist<T>::remove(int index)
 			}
 			else
 			{
-				node<T> *nast = tmp->next;
+				Dnode<T> *nast = tmp->next;
 				delete tmp;
 				if (prev == NULL)
 				{

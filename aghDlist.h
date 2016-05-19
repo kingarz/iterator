@@ -3,11 +3,11 @@
 #include "aghException.h"
 
 template <class T>
-class node
+class Dnode
 {
 public:
-	node *next;
-	node *prev;
+	Dnode *next;
+	Dnode *prev;
 	T value;
 };
 
@@ -28,4 +28,5 @@ private:
 	node<T> *head;
 };
 
+#include "aghDlist_def.h"
 
