@@ -114,6 +114,8 @@
   <ItemGroup>
     <ClInclude Include="aghContainer.h" />
     <ClInclude Include="aghContainer_def.h" />
+    <ClInclude Include="aghDlist.h" />
+    <ClInclude Include="aghDlist_def.h" />
     <ClInclude Include="aghException.h" />
     <ClInclude Include="aghInclude.h" />
     <ClInclude Include="aghSlist.h" />
