@@ -2,3 +2,6 @@
 log_file.txt
 log_debug.txt
 Debug/
+.vs/
+Kontener.sln
+Kontener.sdf
