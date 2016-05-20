@@ -21,9 +21,9 @@ template<class T>
 aghDlist<T>::aghDlist(const aghContainer<T>& value)
 {
 	head = NULL;
-	for (int i = 0; i < value->size(); i++)
+	for (int i = 0; i < value.size(); i++)
 	{
-		insert(i, value->at(i));
+		insert(i, value.at(i));
 	}
 }
 
@@ -81,7 +81,6 @@ T & aghDlist<T>::at(int index) const
 	}
 	int pos = 0;
 	Dnode<T> *tmp = head;
-	Dnode<T> *help = tmp;
 	while (tmp != NULL)
 	{
 		if (pos == index)
@@ -91,8 +90,6 @@ T & aghDlist<T>::at(int index) const
 		else
 		{
 			tmp = tmp->next;
-			tmp->prev = help; 
-			help->next = tmp;
 			pos++;
 		}
 	}
@@ -128,7 +125,6 @@ bool aghDlist<T>::remove(int index)
 			if (tmp->next == NULL)
 			{
 				
-				delete tmp;
 				if (tmp->prev == NULL)
 				{
 					head = NULL;
@@ -137,11 +133,11 @@ bool aghDlist<T>::remove(int index)
 				{
 					tmp->prev->next = NULL;
 				}
+				delete tmp;
 			}
 			else
 			{
 				Dnode<T> *nast = tmp->next;
-				delete tmp;
 				if (tmp->prev == NULL)
 				{
 					head = nast;
@@ -150,6 +146,8 @@ bool aghDlist<T>::remove(int index)
 				{
 					tmp->prev->next = nast;
 				}
+				tmp->next->prev = tmp->prev;
+				delete tmp;
 			}
 			return true;
 		}
