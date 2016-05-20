@@ -15,7 +15,14 @@ int main(void)
 	lista->append(3);
 	lista->insert(1, 100);
 	lista->at(1) = 5;
+	delete lista;
 
+	aghDlist<int>* dlista = new aghDlist<int>;
+	dlista->append(1);
+	dlista->append(2);
+	dlista->append(3);
+	dlista->insert(2,100);
+	delete dlista;
 
 }
 // ---------------------------------------------------------

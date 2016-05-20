@@ -12,7 +12,7 @@ public:
 };
 //TEEEEEEEEEEEEEEEEEEEEEEEEEEEEEST
 template<class T>
-class Dlist : public aghContainer<T>
+class aghDlist : public aghContainer<T>
 {
 public:
 	aghDlist();
@@ -25,7 +25,7 @@ public:
 
 
 private:
-	node<T> *head;
+	Dnode<T> *head;
 };
 
 #include "aghDlist_def.h"
