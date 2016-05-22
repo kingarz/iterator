@@ -20,9 +20,9 @@ template<class T>
 aghSlist<T>::aghSlist(const aghContainer<T> & value)
 {
 	head = NULL;
-	for (int i = 0; i < value->size(); i++)
+	for (int i = 0; i < value.size(); i++)
 	{
-		insert(i, value->at(i));
+		insert(i, value.at(i));
 	}
 }
 
