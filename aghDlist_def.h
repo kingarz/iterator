@@ -3,13 +3,13 @@
 //teeest
 
 template<class T>
-Dlist<T>::aghDlist()
+aghDlist<T>::aghDlist()
 {
 	head = NULL;
 }
 
 template<class T>
-Dlist<T>::~aghDlist()
+aghDlist<T>::~aghDlist()
 {
 	while (head != NULL)
 	{
@@ -18,17 +18,17 @@ Dlist<T>::~aghDlist()
 }
 
 template<class T>
-Dlist<T>::aghDlist(const aghContainer<T>& value)
+aghDlist<T>::aghDlist(const aghContainer<T>& value)
 {
 	head = NULL;
-	for (int i = 0; i < value->size(); i++)
+	for (int i = 0; i < value.size(); i++)
 	{
-		insert(i, value->at(i));
+		insert(i, value.at(i));
 	}
 }
 
 template<class T>
-bool Dlist<T>::insert(int number, T const & value)
+bool aghDlist<T>::insert(int number, T const & value)
 {
 	if (number < 0 || number > size())
 	{
@@ -46,20 +46,21 @@ bool Dlist<T>::insert(int number, T const & value)
 			nowy->value = value;
 			nowy->next = tmp;
 			nowy->prev = tmp->prev;
+			tmp->prev->next = nowy;
+			tmp->prev = nowy;
 			return true;
 		}
 		else
 		{
+			help = tmp;
 			tmp = tmp->next;
-			tmp->prev = help;
-			tmp->next = help->next;
 			pos++;
 		}
 	}
 	tmp = new Dnode<T>;
 	tmp->value = value;
 	tmp->next = NULL;
-	tmp->prev = NULL;
+	tmp->prev = help;
 	if (tmp->prev == NULL)
 	{
 		head = tmp;
@@ -72,7 +73,7 @@ bool Dlist<T>::insert(int number, T const & value)
 }
 
 template<class T>
-T & Dlist<T>::at(int index) const
+T & aghDlist<T>::at(int index) const
 {
 	if (index < 0 || index > size())
 	{
@@ -80,7 +81,6 @@ T & Dlist<T>::at(int index) const
 	}
 	int pos = 0;
 	Dnode<T> *tmp = head;
-	Dnode<T> *help = temp;
 	while (tmp != NULL)
 	{
 		if (pos == index)
@@ -90,8 +90,6 @@ T & Dlist<T>::at(int index) const
 		else
 		{
 			tmp = tmp->next;
-			tmp->prev = help; 
-			help->next = tmp;
 			pos++;
 		}
 	}
@@ -99,23 +97,20 @@ T & Dlist<T>::at(int index) const
 }
 
 template<class T>
-int Dlist<T>::size(void) const
+int aghDlist<T>::size(void) const
 {
 	int pos = 0;
 	Dnode<T> *tmp = head;
-	Dnode<T> *help = tmp;
 	while (tmp != NULL)
 	{
 		tmp = tmp->next;
-		tmp->prev = help;
-		help->next = tmp;
 		pos++;
 	}
 	return pos;
 }
 
 template<class T>
-bool Dlist<T>::remove(int index)
+bool aghDlist<T>::remove(int index)
 {
 	if (index < 0 || index > size())
 	{
@@ -130,8 +125,7 @@ bool Dlist<T>::remove(int index)
 			if (tmp->next == NULL)
 			{
 				
-				delete tmp;
-				if (prev == NULL)
+				if (tmp->prev == NULL)
 				{
 					head = NULL;
 				}
@@ -139,12 +133,12 @@ bool Dlist<T>::remove(int index)
 				{
 					tmp->prev->next = NULL;
 				}
+				delete tmp;
 			}
 			else
 			{
 				Dnode<T> *nast = tmp->next;
-				delete tmp;
-				if (prev == NULL)
+				if (tmp->prev == NULL)
 				{
 					head = nast;
 				}
@@ -152,6 +146,8 @@ bool Dlist<T>::remove(int index)
 				{
 					tmp->prev->next = nast;
 				}
+				tmp->next->prev = tmp->prev;
+				delete tmp;
 			}
 			return true;
 		}
