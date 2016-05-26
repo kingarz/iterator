@@ -35,18 +35,36 @@ bool aghDlist<T>::insert(int number, T const & value)
 		return false;
 	}
 	Dnode<T> *tmp = head;
-	Dnode<T> *help = tmp;
+	Dnode<T> *help;
+	help = NULL;
 	int pos = 0;
 	while (tmp != NULL)
 	{
 		if (pos == number)
 		{
+			//dodawanie w srodku listy
 			Dnode<T> *nowy;
 			nowy = new Dnode<T>;
-			nowy->value = value;
+			//tu pewnie nie jest uwzglednione jak dodaje na sam koniec tylko, a nie na pocz i koniec rownoczesnie
+			if (help == NULL)
+			{
+				if (tmp->next == NULL)
+				{
+					nowy->next = NULL;
+					nowy->prev = NULL;
+					head = nowy;
+					return true;
+				}
+				nowy->next = tmp;
+				nowy->prev = tmp->prev;
+				tmp->prev->next = nowy;
+				tmp->prev = nowy;
+				return true;
+			}
+			//w srodku (nie na koncu i nie na pocz)
 			nowy->next = tmp;
 			nowy->prev = tmp->prev;
-			tmp->prev->next = nowy;
+			nowy->prev->next = nowy;
 			tmp->prev = nowy;
 			return true;
 		}
@@ -57,17 +75,19 @@ bool aghDlist<T>::insert(int number, T const & value)
 			pos++;
 		}
 	}
+	//tmp jest nullem
 	tmp = new Dnode<T>;
 	tmp->value = value;
 	tmp->next = NULL;
-	tmp->prev = help;
-	if (tmp->prev == NULL)
+	//tmp->prev = help;
+	if (help == NULL)
 	{
 		head = tmp;
 	}
 	else
 	{
-		tmp->prev->next = tmp;
+		help->next = tmp;
+		tmp->prev = help;
 	}
 	return true;
 }
