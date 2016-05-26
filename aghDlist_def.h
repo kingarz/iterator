@@ -45,23 +45,26 @@ bool aghDlist<T>::insert(int number, T const & value)
 			//dodawanie w srodku listy
 			Dnode<T> *nowy;
 			nowy = new Dnode<T>;
-			//tu pewnie nie jest uwzglednione jak dodaje na sam koniec tylko, a nie na pocz i koniec rownoczesnie
+			//dodawanie na pocz,gdy nie ma poprzednika
 			if (help == NULL)
 			{
-				if (tmp->next == NULL)
-				{
-					nowy->next = NULL;
-					nowy->prev = NULL;
-					head = nowy;
-					return true;
-				}
 				nowy->next = tmp;
-				nowy->prev = tmp->prev;
-				tmp->prev->next = nowy;
+				nowy->prev = NULL;
 				tmp->prev = nowy;
+				nowy->next = tmp;
+				head = nowy;
 				return true;
 			}
-			//w srodku (nie na koncu i nie na pocz)
+			//dodawanie na koniec
+			if (tmp->next == NULL)
+			{
+				nowy->next = tmp;
+				nowy->prev = tmp->prev;
+				tmp->prev = nowy;
+				nowy->prev->next = nowy;
+				return true;
+			}
+			//dodawanie w srodku listy
 			nowy->next = tmp;
 			nowy->prev = tmp->prev;
 			nowy->prev->next = nowy;
@@ -75,20 +78,12 @@ bool aghDlist<T>::insert(int number, T const & value)
 			pos++;
 		}
 	}
-	//tmp jest nullem
+	//tmp jest nullem,lista jest pusta
 	tmp = new Dnode<T>;
 	tmp->value = value;
 	tmp->next = NULL;
-	//tmp->prev = help;
-	if (help == NULL)
-	{
-		head = tmp;
-	}
-	else
-	{
-		help->next = tmp;
-		tmp->prev = help;
-	}
+	tmp->prev = NULL;
+	head = tmp;
 	return true;
 }
 
@@ -144,7 +139,7 @@ bool aghDlist<T>::remove(int index)
 		{
 			if (tmp->next == NULL)
 			{
-				
+
 				if (tmp->prev == NULL)
 				{
 					head = NULL;
