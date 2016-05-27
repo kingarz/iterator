@@ -124,6 +124,7 @@ bool aghSlist<T>::remove(int index)
 		{
 			if (tmp->next == NULL)
 			{
+				
 				delete tmp;
 				if (prev == NULL)
 				{

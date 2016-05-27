@@ -48,16 +48,26 @@ bool aghDlist<T>::insert(int number, T const & value)
 			//dodawanie na pocz,gdy nie ma poprzednika
 			if (help == NULL)
 			{
+				//na pocz i na koniec, czyli jak list ma jeden element
+				if (tmp->next == NULL)
+				{
+					nowy->value = value;
+					nowy->prev = tmp->prev;
+					tmp->prev = nowy;
+					nowy->next = tmp;
+				}
+				nowy->value = value;
 				nowy->next = tmp;
 				nowy->prev = NULL;
 				tmp->prev = nowy;
-				nowy->next = tmp;
 				head = nowy;
 				return true;
+				
 			}
 			//dodawanie na koniec
 			if (tmp->next == NULL)
 			{
+				nowy->value = value;
 				nowy->next = tmp;
 				nowy->prev = tmp->prev;
 				tmp->prev = nowy;
@@ -65,10 +75,12 @@ bool aghDlist<T>::insert(int number, T const & value)
 				return true;
 			}
 			//dodawanie w srodku listy
+			help = tmp->prev;
 			nowy->next = tmp;
-			nowy->prev = tmp->prev;
-			nowy->prev->next = nowy;
+			nowy->prev = help;
+			help->next = nowy;
 			tmp->prev = nowy;
+			nowy->value = value;
 			return true;
 		}
 		else
@@ -82,8 +94,16 @@ bool aghDlist<T>::insert(int number, T const & value)
 	tmp = new Dnode<T>;
 	tmp->value = value;
 	tmp->next = NULL;
-	tmp->prev = NULL;
-	head = tmp;
+	if (help != NULL)
+	{
+		help->next = tmp;
+		tmp->prev = help;
+	}
+	if (help == NULL)
+	{
+		head = tmp;
+		tmp->prev = NULL;
+	}
 	return true;
 }
 
@@ -132,41 +152,50 @@ bool aghDlist<T>::remove(int index)
 		return false;
 	}
 	Dnode<T> *tmp = head;
+	Dnode<T> *poprz = NULL;
 	int pos = 0;
 	while (tmp != NULL)
 	{
 		if (pos == index)
 		{
+			//spr czy usuwamy z konca
 			if (tmp->next == NULL)
 			{
-
+				//czy usuwamy z konca i pocz
 				if (tmp->prev == NULL)
 				{
 					head = NULL;
+					delete tmp;
 				}
 				else
 				{
 					tmp->prev->next = NULL;
+					delete tmp;
 				}
-				delete tmp;
+				
+				return true;
 			}
 			else
+				//usuwamy nie z konca
 			{
-				Dnode<T> *nast = tmp->next;
+				//gdy usuwamy tylko z samego poczatku , na pewno nie jest lista 1elem
 				if (tmp->prev == NULL)
 				{
-					head = nast;
+					head = tmp->next;
+					tmp->next->prev = NULL;
+					delete tmp;
+					return true;
 				}
-				else
-				{
-					tmp->prev->next = nast;
-				}
-				tmp->next->prev = tmp->prev;
+				//usuwamy ze srodka listy
+				Dnode<T> *nast = tmp->next;
+				poprz = tmp->prev;
+				poprz->next = nast;
+				nast->prev = poprz;
 				delete tmp;
+				return true;
 			}
-			return true;
 		}
-		tmp->prev = tmp;
+		poprz = tmp;
 		pos++;
 		tmp = tmp->next;
 	}
