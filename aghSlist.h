@@ -21,7 +21,7 @@ public:
 	virtual T& at(int index) const;
 	virtual int size(void) const;
 	virtual bool remove(int index);
-
+	virtual aghSlist<T>& operator=(aghSlist<T> const& list);
 
 private:
 	node<T> *head;

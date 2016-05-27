@@ -34,8 +34,7 @@ bool aghSlist<T>::insert(int number, T const & value)
 	{
 		return false;
 	}
-	node<T> *tmp;
-	tmp = head;
+	node<T> *tmp = head;
 	node<T> *prev;
 	prev = NULL;
 	int pos = 0;
@@ -46,8 +45,32 @@ bool aghSlist<T>::insert(int number, T const & value)
 			node<T> *nowy;
 			nowy = new node<T>;
 			nowy->value = value;
+			//dodawanie na pocz
+			if (prev == NULL)
+			{
+				//dod na koniec i pocz jednoczesnie, gdy lista ma elem
+				if (tmp->next == NULL)
+				{
+					nowy->next = tmp;
+					prev = nowy;
+					head = nowy;
+					return true;
+				}
+				nowy->next = tmp;
+				prev = nowy;
+				head = nowy;
+				return true;
+			}
+			//dodawanie na sam koniec
+			if (tmp->next == NULL)
+			{
+				nowy->next = tmp;
+				prev = nowy;
+				return true;
+			}
+			//dodawanie w srodku listy
+			prev = nowy;
 			nowy->next = tmp;
-			prev->next = nowy;
 			return true;
 		}
 		else
@@ -57,6 +80,7 @@ bool aghSlist<T>::insert(int number, T const & value)
 			pos++;
 		}
 	}
+	//tmp jest nullem,lista jest pusta
 	tmp = new node<T>;
 	tmp->value = value;
 	tmp->next = NULL;
@@ -155,4 +179,35 @@ bool aghSlist<T>::remove(int index)
 		tmp = tmp->next;
 	}
 	return false;
+}
+
+
+
+template<class T>
+aghSlist<T>& aghSlist<T>::operator=(const aghSlist<T>& list)
+{
+	int tsize = size();
+	int lsize = list.size();
+
+	for (int i = 0; i < min(lsize, tsize); i++)
+	{
+		at(i) = list.at(i);
+	}
+
+	if (lsize > tsize)
+	{
+		for (int i = tsize; i < lsize; i++)
+		{
+			append(list.at(i));
+		}
+	}
+	else if (lsize < tsize)
+	{
+		for (int i = lsize; i < tsize; i++)
+		{
+			remove(i);
+		}
+	}
+
+	return *this;
 }

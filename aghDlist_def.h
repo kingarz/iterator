@@ -61,8 +61,7 @@ bool aghDlist<T>::insert(int number, T const & value)
 				nowy->prev = NULL;
 				tmp->prev = nowy;
 				head = nowy;
-				return true;
-				
+				return true;	
 			}
 			//dodawanie na koniec
 			if (tmp->next == NULL)
@@ -202,4 +201,33 @@ bool aghDlist<T>::remove(int index)
 	return false;
 }
 
+
+template<class T>
+aghDlist<T>& aghDlist<T>::operator=(const aghDlist<T>& list)
+{
+	int tsize = size();
+	int lsize = list.size();
+
+	for (int i = 0; i < min(lsize, tsize); i++)
+	{
+		at(i) = list.at(i);
+	}
+
+	if (lsize > tsize)
+	{
+		for (int i = tsize; i < lsize; i++)
+		{
+			append(list.at(i));
+		}
+	}
+	else if (lsize < tsize)
+	{
+		for (int i = lsize; i < tsize; i++)
+		{
+			remove(i);
+		}
+	}
+
+	return *this;
+}
 

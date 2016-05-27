@@ -22,7 +22,7 @@ public:
 	virtual T& at(int index) const;
 	virtual int size(void) const;
 	virtual bool remove(int index);
-
+	virtual aghDlist<T>& operator=(aghDlist<T> const& list);
 
 private:
 	Dnode<T> *head;
