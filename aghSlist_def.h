@@ -198,7 +198,7 @@ aghSlist<T>& aghSlist<T>::operator=(const aghSlist<T>& list)
 	{
 		for (int i = tsize; i < lsize; i++)
 		{
-			append(list.at(i));
+			this->append(list.at(i));
 		}
 	}
 	else if (lsize < tsize)
