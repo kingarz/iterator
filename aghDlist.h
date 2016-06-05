@@ -10,7 +10,7 @@ public:
 	Dnode *prev;
 	T value;
 };
-//TEEEEEEEEEEEEEEEEEEEEEEEEEEEEEST
+
 template<class T>
 class aghDlist : public aghContainer<T>
 {

@@ -3,3 +3,4 @@
 #include "aghVector.h"
 #include "aghSlist.h"
 #include "aghDlist.h"
+#include "aghIterator.h"
