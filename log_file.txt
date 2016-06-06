@@ -1,0 +1,18 @@
+ex5main.cpp: In function 'int main()':
+ex5main.cpp:87:31: warning: NULL used in arithmetic [-Wpointer-arith]
+     bool t11 = ((int)iter3 == NULL);
+                               ^
+ex5main.cpp:89:33: warning: NULL used in arithmetic [-Wpointer-arith]
+     t11 = t11 && ((int)iter3 != NULL);
+                                 ^
+ex5main.cpp:92:33: warning: NULL used in arithmetic [-Wpointer-arith]
+     t11 = t11 && ((int)iter3 == NULL);
+                                 ^
+In file included from aghIterator.h:37:0,
+                 from aghInclude.h:6,
+                 from ex5main.cpp:1:
+aghIterator_def.h: In instantiation of 'aghIterator<T>::operator int() [with T = int]':
+ex5main.cpp:87:22:   required from here
+aghIterator_def.h:188:10: warning: converting to non-pointer type 'int' from NULL [-Wconversion-null]
+   return NULL;
+          ^

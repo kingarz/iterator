@@ -4,3 +4,4 @@ log_debug.txt
 Debug\
 Kontener.sdf
 .vs\
+build_MinGW.bat

@@ -9,23 +9,35 @@ aghIterator<T>::aghIterator()
 }
 
 template<class T>
-aghIterator<T>& aghIterator<T>::first()
+aghIterator<T>::aghIterator(aghContainer<T>* value)
 {
+	pointer = value;
 	position = 0;
-	return *this;
 }
 
 template<class T>
-aghIterator<T>& aghIterator<T>::last()
+aghIterator<T> aghIterator<T>::first()
 {
-	position = pointer->size() - 1;
-	return *this;
+	aghIterator<T> current;
+	current = *this;
+	current.position = 0;
+	return current;
 }
 
 template<class T>
-void aghIterator<T>::next()
+aghIterator<T> aghIterator<T>::last()
+{
+	aghIterator<T> current;
+	current = *this;
+	current.position = pointer->size() - 1;
+	return current;
+}
+
+template<class T>
+aghIterator<T>& aghIterator<T>::next()
 {
 	position += 1;
+	return *this;
 }
 
 template<class T>
@@ -41,15 +53,17 @@ T& aghIterator<T>::current()
 }
 
 template<class T>
-void aghIterator<T>::atFirst()
+aghIterator<T>& aghIterator<T>::atFirst()
 {
 	position = 0;
+	return *this;
 }
 
 template<class T>
-void aghIterator<T>::atLast()
+aghIterator<T>& aghIterator<T>::atLast()
 {
 	position = pointer->size() - 1;
+	return *this;
 }
 
 template<class T>
@@ -68,7 +82,7 @@ aghIterator<T>& aghIterator<T>::operator=(aghContainer<T> const & value)
 template<class T>
 bool aghIterator<T>::operator==(aghIterator<T> const & value)
 {
-	if ((pointer == value->pointer) && (position == value->position))
+	if ((pointer == value.pointer) && (position == value.position))
 	{
 		return true;
 	}
@@ -81,14 +95,7 @@ bool aghIterator<T>::operator==(aghIterator<T> const & value)
 template<class T>
 bool aghIterator<T>::operator!=(aghIterator<T> const & value)
 {
-	if (this == value)
-	{
-		return false;
-	}
-	else
-	{
-		return true;
-	}
+	return !(*this == value);
 }
 
 template<class T>
@@ -102,16 +109,16 @@ template<class T>
 T & aghIterator<T>::operator[](int position)
 {
 	//zwraca element znajduj¹cy siê o i pozycji dalej wzglêdem aktualnego elementu
-	this->position += position;
-	return this->operator*;
+	return pointer->at(this->position + position);
 }
 
 template<class T>
-aghIterator<T>& aghIterator<T>::operator+(int position)
+aghIterator<T> aghIterator<T>::operator+(int position)
 {
 	//zwraca iterator przesuniêty o i elementów dalej
-	this->position += position;
-	return *this;
+	aghIterator<T> current = *this;
+	current.position += position;
+	return current;
 }
 
 template<class T>
@@ -122,15 +129,13 @@ void aghIterator<T>::operator+=(int position)
 }
 
 template<class T>
-aghIterator<T> & aghIterator<T>::operator--(int position)
+aghIterator<T> aghIterator<T>::operator--(int position)
 {
 	//zwraca iterator pokazuj¹cy na i-ty element a nastêpnie przesuwa iterator na i-1 element
-	this->position = position;
 	aghIterator<T> actual;
-	actual->pointer = pointer;
-	actual->position = this->position;
+	actual = *this;
 	this->position -= 1;
-	return *actual;
+	return actual;
 }
 
 template<class T>
@@ -141,15 +146,13 @@ void aghIterator<T>::operator-=(int position)
 }
 
 template<class T>
-aghIterator<T>& aghIterator<T>::operator++(int position)
+aghIterator<T> aghIterator<T>::operator++(int position)
 {
 	// zwraca iterator pokazuj¹cy na i-ty element a nastêpnie przesuwa iterator na i+1 element
-	this->position = position;
 	aghIterator<T> actual;
-	actual->pointer = pointer;
-	actual->position = position;
+	actual = *this;
 	this->position += 1;
-	return *actual;
+	return actual;
 }
 
 template<class T>
@@ -169,16 +172,21 @@ aghIterator<T>& aghIterator<T>::operator--()
 }
 
 template<class T>
-aghIterator<T> & aghIterator<T>::operator-(int position)
+aghIterator<T> aghIterator<T>::operator-(int position)
 {
 	//zwraca iterator przesuniêty o i elementów bli¿ej
-	this->position -= position;
-	return *this;
+	aghIterator<T> current = *this;
+	current.position -= position;
+	return current;
 }
 
 template<class T>
 aghIterator<T>::operator int()
 {
-	return this->pointer;
+	if (position < 0 || position >= pointer->size())
+	{
+		return NULL;
+	}
+	return (int)this->pointer;
 	//zwraca pointer wskazujacy na kontener
 }

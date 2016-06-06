@@ -51,6 +51,9 @@
     <ClInclude Include="aghIterator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="aghIterator_def.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="aghException.cpp">
@@ -59,10 +62,5 @@
     <ClCompile Include="ex5main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="aghIterator_def.h">
-      <Filter>Header Files</Filter>
-    </None>
   </ItemGroup>
 </Project>

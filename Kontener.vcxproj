@@ -118,6 +118,8 @@
     <ClInclude Include="aghDlist_def.h" />
     <ClInclude Include="aghException.h" />
     <ClInclude Include="aghInclude.h" />
+    <ClInclude Include="aghIterator.h" />
+    <ClInclude Include="aghIterator_def.h" />
     <ClInclude Include="aghSlist.h" />
     <ClInclude Include="aghSlist_def.h" />
     <ClInclude Include="aghVector.h" />
@@ -126,7 +128,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="aghException.cpp" />
-    <ClCompile Include="ex4main.cpp" />
+    <ClCompile Include="ex5main.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,6 +1,6 @@
 del /Q log_file.txt
 del /Q a.exe
-set "path=D:\ProgramFiles\MinGW\bin"
+set "path=C:\MinGW\bin"
 cls
 
 g++ *.cpp -std=c++11 > log_file.txt 2>&1
